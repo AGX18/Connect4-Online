@@ -29,6 +29,10 @@ public class Game {
         winner = null;
     }
 
+    public Board getBoard() {
+        return board;
+    }
+
     public String getBoardPresentation() {
         return this.board.toString();
     }

@@ -42,60 +42,34 @@ public class Board {
 
 //    checkWin(row, column, color) -> bool
 
+    private int countInDirection(int row, int column,int dr,int dc, Disc color) {
+        int count = 0;
+        row += dr;
+        column += dc;
+        while (inBounds(row, column) && grid[row][column] == color) {
+            count++;
+            row += dr;
+            column += dc;
+        }
+        return count;
+    }
+
+    private boolean inBounds(int row, int column) {
+        return column >= 0 && column < cols && row >= 0 && row < rows;
+    }
+
     public boolean checkWin(int row, int col, Disc color) {
-        // check horizontally
-        int horizontalDics = 0;
-        int newCol = col;
-        // go right
-        while (newCol >= 0 && newCol < cols && this.grid[row][newCol] == color) {
-            horizontalDics++;
-            newCol++;
-        }
+        int[][] directions = {{0, 1}, {1, 0}, {1, 1}, {-1, 1}};
 
-        // go left
-        newCol = col - 1;
-        while (newCol >= 0 && newCol < cols && this.grid[row][newCol] == color) {
-            horizontalDics++;
-            newCol--;
+        for  (int[] direction : directions) {
+            int count = 1;
+            count += countInDirection(row, col, direction[0], direction[1], color);
+            count += countInDirection(row, col, direction[0] * -1, direction[1] * -1, color);
+            if  (count >= 4) {
+                return true;
+            }
         }
-
-        // ---------------------------------------------------------------
-        // check diagonally
-        int diagonalDics = 0;
-        newCol = col;
-        int newRow = row;
-        while (newCol >= 0 && newCol < cols && newRow >= 0 && newRow < rows && this.grid[newRow][newCol] == color) {
-            diagonalDics++;
-            newCol++;
-            newRow++;
-        }
-
-        newCol = col - 1;
-        newRow = row - 1;
-        while (newCol >= 0 && newCol < cols && newRow >= 0 && newRow < rows && this.grid[newRow][newCol] == color) {
-            diagonalDics++;
-            newCol--;
-            newRow--;
-        }
-
-        // ---------------------------------------------------------------
-        // check vertically
-        int verticalDics = 0;
-        newRow = row;
-        // go down
-        while (newRow >= 0 && newRow < rows && this.grid[newRow][col] == color) {
-            verticalDics++;
-            newRow++;
-        }
-
-        // go up
-        newRow = col - 1;
-        while (newRow >= 0 && newRow < rows && this.grid[newRow][col] == color) {
-            verticalDics++;
-            newRow--;
-        }
-
-        return  horizontalDics >= 4 || diagonalDics >= 4 || verticalDics >= 4;
+        return false;
     }
 
     @Override

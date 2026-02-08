@@ -14,7 +14,10 @@ public class Main {
                 scanner.next(); // IMPORTANT: Consume bad input
             }
             int column = scanner.nextInt();
-            game.makeMove(game.getCurrentPlayer(), column);
+            boolean res = game.makeMove(game.getCurrentPlayer(), column);
+            if (!res) {
+                System.out.println("Invalid move!");
+            }
             if (game.isOver()) {
                 System.out.println(game.getWinner().getName() + " is the winner!");
                 break;
