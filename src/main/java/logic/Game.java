@@ -1,8 +1,10 @@
+package logic;
+
 /**
  * The orchestrator.
- * Holds the Board, tracks which Player's turn it is, manages game state (in progress, won, draw),
+ * Holds the logic.Board, tracks which logic.Player's turn it is, manages game state (in progress, won, draw),
  * and enforces turn-based rules.
- * When a player makes a move, Game validates it, tells Board to place the disc,
+ * When a player makes a move, logic.Game validates it, tells logic.Board to place the disc,
  * checks if that move won, and switches turns.
  */
 
@@ -56,18 +58,18 @@ public class Game {
         return getState() != GameState.In_Progress;
     }
 
-    public boolean makeMove(Player player, int column) {
+    public int makeMove(Player player, int column) {
         if (state != GameState.In_Progress) {
-            return false;
+            return -1;
         }
         if (player != this.currentPlayer) {
-            return false;
+            return -1;
         }
 
         // place disc
         int row = board.placeDisc(column, player.getColor());
         if (row == -1) {
-            return false;
+            return -1;
         }
 
         if (board.checkWin(row, column, player.getColor())) {
@@ -78,7 +80,7 @@ public class Game {
         } else {
             currentPlayer = (player == this.player1) ? this.player2 : this.player1; // switch turn
         }
-        return true;
+        return row;
     }
 //    makeMove(player, column)
 //    if state != IN_PROGRESS

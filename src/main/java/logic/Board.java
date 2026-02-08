@@ -1,11 +1,8 @@
-enum Disc {
-    RED,
-    YELLOW,
-}
+package logic;
 
 public class Board {
-    final int rows = 6;
-    final int cols = 7;
+    static public final int rows = 6;
+    static public final int cols = 7;
     Disc[][] grid;
 
     public Board() {
