@@ -1,5 +1,6 @@
 package ui.view;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -13,10 +14,26 @@ import ui.manager.StageManager;
 public class MenuPane extends VBox {
     StageManager stageManager;
     public MenuPane(StageManager stageManager) {
+        this.setAlignment(Pos.CENTER);
+        this.setMaxWidth(300);
+        this.setSpacing(20);
+
+        this.getStylesheets().add(
+                getClass().getResource("/styles.css").toExternalForm()
+        );
+
         Label title = Utils.createTitle("Connect4");
+
+        title.getStyleClass().add("game-title");
+
+
         TextField player1Field = makeTextField("Enter Player 1 Name: ");
+        player1Field.setMaxWidth(300);
         TextField player2Field = makeTextField("Enter Player 2 Name: ");
+        player2Field.setMaxWidth(300);
         Button startBtn = Utils.createButton("Start");
+        startBtn.getStyleClass().add("play-btn");
+
         Player[] players = new Player[2];
         ComboBox<Disc> p1Box = new ComboBox<>();
         p1Box.getItems().addAll(Disc.values());

@@ -79,16 +79,14 @@ public class GamePane extends BorderPane {
     }
 
     private void playDisc(int col) {
-        while (!game.isOver()) {
-            int res = game.makeMove(game.getCurrentPlayer(), col);
-            if (res == -1) {
-                showError("Invalid Move");
-            }
-            if (game.isOver()) {
-                System.out.println(game.getWinner().getName() + " is the winner!");
-                break;
-            }
+        int res = game.makeMove(game.getCurrentPlayer(), col);
+        if (res == -1) {
+            showError("Invalid Move");
         }
+//        if (game.isOver()) {
+//
+//        }
+
     }
 
     private void showError(String msg) {
