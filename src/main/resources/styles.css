@@ -8,11 +8,18 @@
     -fx-text-fill: white;
     -fx-effect: dropshadow(three-pass-box, rgba(129,140,248,0.5), 10, 0, 0, 0);
 }
-
 .text-field {
-    -fx-background-color: rgba(0,0,0,0.3);
-    -fx-text-fill: white;
+    -fx-padding: 12px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #cbd5e1;
     -fx-border-color: #475569;
-    -fx-background-radius: 8;
+    -fx-border-width: 2;
     -fx-border-radius: 8;
+    -fx-background-color: #1e293b;
+}
+
+.text-field:focused {
+    -fx-background-color: #1e293b;
+    -fx-border-color: #818cf8;
 }

@@ -75,17 +75,6 @@ public class MenuPane extends VBox {
     private TextField makeTextField(String text) {
         TextField txtField = new TextField();
         txtField.setPromptText(text);
-        txtField.setStyle(
-                "-fx-font-size: 14; " +
-                        "-fx-padding: 10; " +
-                        "-fx-control-inner-background: #ecf0f1; " +
-                        "-fx-border-color: #3498db; " +
-                        "-fx-border-width: 2; " +
-                        "-fx-border-radius: 5; " +
-                        "-fx-text-fill: #2c3e50; " +
-                        "-fx-font-family: Arial; " +
-                        "-fx-cursor: text;"
-        );
         txtField.setPrefWidth(200);
         return txtField;
     }
